@@ -1,19 +1,18 @@
-import { createStitches } from '@stitches/react' 
+import { createStitches } from '@stitches/react'
 
 export const {
-    config,
-    styled,
-    css,
-    globalCss,
-    keyframes,
-    getCssText,
-    theme,
-    createTheme,
+  config,
+  styled,
+  css,
+  globalCss,
+  keyframes,
+  getCssText,
+  theme,
+  createTheme,
 } = createStitches({
-    theme: {
-        colors: {
-            'rocketseat': '#8257e6',
-        }
-    }
+  theme: {
+    colors: {
+      rocketseat: '#8257e6',
+    },
+  },
 })
-
