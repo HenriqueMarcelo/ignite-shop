@@ -19,11 +19,18 @@ interface HomeProps {
 }
 
 export default function Home({ products }: HomeProps) {
+  const gap = 48
+  let origin = 0.5
+  if (typeof window !== 'undefined') {
+    const viwelportWidth = window.visualViewport!.width
+    const paddingLeft = (viwelportWidth - 1180) / 2
+    origin = (paddingLeft + gap) / viwelportWidth
+  }
   const [sliderRef] = useKeenSlider({
     slides: {
       perView: 3,
-      spacing: 48,
-      origin: 0.214,
+      spacing: gap,
+      origin,
     },
   })
 
