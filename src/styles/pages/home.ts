@@ -28,7 +28,7 @@ export const Product = styled('div', {
     bottom: '0.25rem',
     left: '0.25rem',
     right: '0.25rem',
-    padding: '2rem',
+    padding: '1.25rem',
 
     borderRadius: 6,
 
@@ -45,12 +45,37 @@ export const Product = styled('div', {
     strong: {
       fontSize: '$lg',
       color: '$gray100',
+      display: 'block',
+      marginBottom: 4,
+      lineHeight: 1.6,
     },
 
     span: {
       fontSize: '$xl',
       fontWeight: 'bold',
       color: '$green300',
+    },
+
+    button: {
+      marginTop: 'auto',
+      background: '$green500',
+      border: 0,
+      color: '$white',
+      borderRadius: 8,
+      padding: '0.75rem',
+      cursor: 'pointer',
+      fontWeight: 'bold',
+      fontSize: '$md',
+      transition: '.1s ease-in-out',
+
+      '&:disabled': {
+        opacity: 0.6,
+        cursor: 'not-allowed',
+      },
+
+      '&:not(:disabled):hover': {
+        backgroundColor: '$green300',
+      },
     },
   },
 
