@@ -4,6 +4,7 @@ import logoSGV from '../assets/logo.svg'
 import { Container, Header } from '../styles/pages/app'
 import Image from 'next/image'
 import Link from 'next/link'
+import { CardButton } from '../components/CardButton'
 
 globalStyles()
 
@@ -14,6 +15,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <Link href="/">
           <Image src={logoSGV} alt="" />
         </Link>
+        <CardButton />
       </Header>
       <Component {...pageProps} />
     </Container>
