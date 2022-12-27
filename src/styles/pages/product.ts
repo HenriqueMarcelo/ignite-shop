@@ -32,20 +32,20 @@ export const ProductDetails = styled('div', {
   flexDirection: 'column',
 
   h1: {
-    fontSize: '$2xl',
+    fontSize: '$f32',
     color: '$gray300',
   },
 
   span: {
     marginTop: '1rem',
     display: 'block',
-    fontSize: '$2xl',
+    fontSize: '$f32',
     color: '$green300',
   },
 
   p: {
     marginTop: '2.5rem',
-    fontSize: '$md',
+    fontSize: '$f18',
     lineHeight: 1.6,
     color: '$gray300',
   },
@@ -59,7 +59,7 @@ export const ProductDetails = styled('div', {
     padding: '1.25rem',
     cursor: 'pointer',
     fontWeight: 'bold',
-    fontSize: '$md',
+    fontSize: '$f18',
     transition: '.1s ease-in-out',
 
     '&:disabled': {

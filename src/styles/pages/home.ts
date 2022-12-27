@@ -43,7 +43,7 @@ export const Product = styled('div', {
     transition: 'all 0.2s ease-in-out',
 
     strong: {
-      fontSize: '$lg',
+      fontSize: '$f20',
       color: '$gray100',
       display: 'block',
       marginBottom: 4,
@@ -65,7 +65,7 @@ export const Product = styled('div', {
       padding: '0.75rem',
       cursor: 'pointer',
       fontWeight: 'bold',
-      fontSize: '$md',
+      fontSize: '$f18',
       transition: '.1s ease-in-out',
 
       '&:disabled': {

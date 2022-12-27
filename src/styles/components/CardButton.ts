@@ -7,7 +7,7 @@ export const CardButtonContainer = styled('button', {
   padding: '0.75rem',
   cursor: 'pointer',
   fontWeight: 'bold',
-  fontSize: '$md',
+  fontSize: '$f18',
   transition: '.1s ease-in-out',
 
   position: 'relative',

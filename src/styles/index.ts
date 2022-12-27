@@ -23,10 +23,11 @@ export const {
       green300: '#00b37e',
     },
     fontSizes: {
-      md: '1.125rem',
-      lg: '1.25rem',
-      xl: '1.5rem',
-      '2xl': '2em',
+      f16: '1rem',
+      f18: '1.125rem',
+      f20: '1.25rem',
+      f24: '1.5rem',
+      f32: '2em',
     },
   },
 })

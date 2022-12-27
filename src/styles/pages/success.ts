@@ -9,7 +9,7 @@ export const SuccessContainer = styled('main', {
   height: 656,
 
   h1: {
-    fontSize: '$2xl',
+    fontSize: '$f32',
     color: '$gray100',
   },
 
@@ -24,7 +24,7 @@ export const SuccessContainer = styled('main', {
   },
 
   a: {
-    fontSize: '$lg',
+    fontSize: '$f20',
     color: '$green500',
 
     marginTop: '5rem',
