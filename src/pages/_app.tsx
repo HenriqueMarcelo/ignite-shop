@@ -5,6 +5,7 @@ import { Container, Header } from '../styles/pages/app'
 import Image from 'next/image'
 import Link from 'next/link'
 import { CardButton } from '../components/CardButton'
+import { SideCart } from '../components/SideCart'
 
 globalStyles()
 
@@ -18,6 +19,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <CardButton />
       </Header>
       <Component {...pageProps} />
+      <SideCart />
     </Container>
   )
 }
