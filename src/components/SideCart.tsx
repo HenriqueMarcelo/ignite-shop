@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { X } from 'phosphor-react'
+import { useShoppingCart } from 'use-shopping-cart'
 import {
   CloseButton,
   ImageContainer,
@@ -7,19 +8,13 @@ import {
   SideCartContainer,
 } from '../styles/components/SideCart'
 
-interface SideCartProps {
-  showSideCart: boolean
-  closeSideCart: () => void
-}
-
-export function SideCart({ showSideCart, closeSideCart }: SideCartProps) {
-  function handleCloseSideCart() {
-    closeSideCart()
-  }
+export function SideCart() {
+  const { formattedTotalPrice, shouldDisplayCart, handleCloseCart } =
+    useShoppingCart()
 
   return (
-    <SideCartContainer className={showSideCart ? 'show' : ''}>
-      <CloseButton onClick={handleCloseSideCart}>
+    <SideCartContainer className={shouldDisplayCart ? 'show' : ''}>
+      <CloseButton onClick={handleCloseCart}>
         <X size={32} weight="bold" />
       </CloseButton>
       <div>
@@ -63,7 +58,7 @@ export function SideCart({ showSideCart, closeSideCart }: SideCartProps) {
         </h3>
         <h2>
           <span>Valor Total</span>
-          <strong>R$ 270,00</strong>
+          <strong>{formattedTotalPrice}</strong>
         </h2>
         <button>Finalizar compra</button>
       </footer>
