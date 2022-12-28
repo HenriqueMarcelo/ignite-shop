@@ -11,14 +11,18 @@ import { stripe } from '../lib/stripe'
 import { GetStaticProps } from 'next'
 import Stripe from 'stripe'
 import { Handbag } from 'phosphor-react'
+import { DebugCart, useShoppingCart } from 'use-shopping-cart'
+
+interface ProductType {
+  id: string
+  name: string
+  imageUrl: string
+  price: string
+  originalPrice: number
+}
 
 interface HomeProps {
-  products: {
-    id: string
-    name: string
-    imageUrl: string
-    price: string
-  }[]
+  products: ProductType[]
 }
 
 export default function Home({ products }: HomeProps) {
@@ -36,6 +40,21 @@ export default function Home({ products }: HomeProps) {
       origin,
     },
   })
+
+  const { addItem } = useShoppingCart()
+
+  function handlePutOnCart(product: ProductType) {
+    console.log(product)
+
+    const productToCart = {
+      name: product.name,
+      id: product.id,
+      price: product.originalPrice,
+      currency: 'BRL',
+    }
+
+    addItem(productToCart)
+  }
 
   return (
     <>
@@ -59,7 +78,12 @@ export default function Home({ products }: HomeProps) {
                     <strong>{product.name}</strong>
                     <span>{product.price}</span>
                   </div>
-                  <button>
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault()
+                      handlePutOnCart(product)
+                    }}
+                  >
                     <Handbag size={32} weight="bold" />
                   </button>
                 </footer>
@@ -67,6 +91,9 @@ export default function Home({ products }: HomeProps) {
             </Link>
           )
         })}
+        {/* <div style={{ color: 'black' }}>
+          <DebugCart />
+        </div> */}
       </HomeContainer>
     </>
   )
@@ -89,6 +116,7 @@ export const getStaticProps: GetStaticProps = async () => {
         style: 'currency',
         currency: 'BRL',
       }).format(price.unit_amount! / 100),
+      originalPrice: price.unit_amount,
     }
   })
 

@@ -9,7 +9,7 @@ import {
 } from '../styles/components/SideCart'
 
 export function SideCart() {
-  const [showCart, setShowcart] = useState(true)
+  const [showCart, setShowcart] = useState(false)
   return (
     <SideCartContainer className={showCart ? 'show' : ''}>
       <CloseButton

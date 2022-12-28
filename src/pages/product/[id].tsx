@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import Stripe from 'stripe'
+import { useShoppingCart } from 'use-shopping-cart'
 import { stripe } from '../../lib/stripe'
 import {
   ImageContainer,
@@ -12,15 +13,18 @@ import {
   ProductDetails,
 } from '../../styles/pages/product'
 
+interface ProductType {
+  id: string
+  name: string
+  imageUrl: string
+  price: string
+  originalPrice: number
+  description: string
+  defaultPriceId: string
+}
+
 interface ProductProps {
-  product: {
-    id: string
-    name: string
-    imageUrl: string
-    price: string
-    description: string
-    defaultPriceId: string
-  }
+  product: ProductType
 }
 
 export default function Product({ product }: ProductProps) {
@@ -45,6 +49,19 @@ export default function Product({ product }: ProductProps) {
     console.log(product.defaultPriceId)
   }
 
+  const { addItem } = useShoppingCart()
+
+  function handlePutOnCart() {
+    const productToCart = {
+      name: product.name,
+      id: product.id,
+      price: product.originalPrice,
+      currency: 'BRL',
+    }
+
+    addItem(productToCart)
+  }
+
   const { isFallback } = useRouter()
   if (isFallback) {
     return <h1>Carregando...</h1>
@@ -67,10 +84,10 @@ export default function Product({ product }: ProductProps) {
           <p>{product.description}</p>
 
           <button
-            onClick={handleBuyProduct}
+            onClick={handlePutOnCart}
             disabled={isCreatingCheckoutSession}
           >
-            Comprar Agora
+            Colocar na sacola
           </button>
         </ProductDetails>
       </ProductContainer>
@@ -106,6 +123,7 @@ export const getStaticProps: GetStaticProps<any, { id: string }> = async ({
           style: 'currency',
           currency: 'BRL',
         }).format(price.unit_amount! / 100),
+        originalPrice: price.unit_amount,
         description: product.description,
         defaultPriceId: price.id,
       },
