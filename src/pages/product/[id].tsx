@@ -25,9 +25,10 @@ interface ProductType {
 
 interface ProductProps {
   product: ProductType
+  openSideCart: () => void
 }
 
-export default function Product({ product }: ProductProps) {
+export default function Product({ product, openSideCart }: ProductProps) {
   const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] =
     useState(false)
 
@@ -60,6 +61,8 @@ export default function Product({ product }: ProductProps) {
     }
 
     addItem(productToCart)
+
+    openSideCart()
   }
 
   const { isFallback } = useRouter()

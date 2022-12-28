@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import { X } from 'phosphor-react'
-import { useState } from 'react'
 import {
   CloseButton,
   ImageContainer,
@@ -8,15 +7,19 @@ import {
   SideCartContainer,
 } from '../styles/components/SideCart'
 
-export function SideCart() {
-  const [showCart, setShowcart] = useState(false)
+interface SideCartProps {
+  showSideCart: boolean
+  closeSideCart: () => void
+}
+
+export function SideCart({ showSideCart, closeSideCart }: SideCartProps) {
+  function handleCloseSideCart() {
+    closeSideCart()
+  }
+
   return (
-    <SideCartContainer className={showCart ? 'show' : ''}>
-      <CloseButton
-        onClick={() => {
-          setShowcart(false)
-        }}
-      >
+    <SideCartContainer className={showSideCart ? 'show' : ''}>
+      <CloseButton onClick={handleCloseSideCart}>
         <X size={32} weight="bold" />
       </CloseButton>
       <div>
