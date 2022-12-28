@@ -15,6 +15,7 @@ export function SideCart() {
     handleCloseCart,
     cartCount,
     cartDetails,
+    removeItem,
   } = useShoppingCart()
 
   const cartItems = []
@@ -40,7 +41,7 @@ export function SideCart() {
               <div>
                 <h1>{item.name}</h1>
                 <h2>{item.formattedValue}</h2>
-                <button>Remover</button>
+                <button onClick={() => removeItem(item.id)}>Remover</button>
               </div>
             </Item>
           )

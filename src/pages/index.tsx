@@ -11,7 +11,7 @@ import { stripe } from '../lib/stripe'
 import { GetStaticProps } from 'next'
 import Stripe from 'stripe'
 import { Handbag } from 'phosphor-react'
-import { DebugCart, useShoppingCart } from 'use-shopping-cart'
+import { useShoppingCart } from 'use-shopping-cart'
 
 interface ProductType {
   id: string
@@ -92,9 +92,6 @@ export default function Home({ products }: HomeProps) {
             </Link>
           )
         })}
-        {/* <div style={{ color: 'black' }}>
-          <DebugCart />
-        </div> */}
       </HomeContainer>
     </>
   )
