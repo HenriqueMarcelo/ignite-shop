@@ -57,6 +57,7 @@ export default function Product({ product }: ProductProps) {
       id: product.id,
       price: product.originalPrice,
       currency: 'BRL',
+      image: product.imageUrl,
     }
 
     addItem(productToCart)

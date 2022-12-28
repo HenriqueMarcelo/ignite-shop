@@ -51,6 +51,7 @@ export default function Home({ products }: HomeProps) {
       id: product.id,
       price: product.originalPrice,
       currency: 'BRL',
+      image: product.imageUrl,
     }
 
     addItem(productToCart)
