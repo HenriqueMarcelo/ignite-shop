@@ -25,6 +25,15 @@ export const ImageContainer = styled('div', {
   img: {
     objectFit: 'cover',
   },
+
+  variants: {
+    skeleton: {
+      true: {
+        background: '$gray800',
+        width: 520,
+      },
+    },
+  },
 })
 
 export const ProductDetails = styled('div', {
@@ -69,6 +78,26 @@ export const ProductDetails = styled('div', {
 
     '&:not(:disabled):hover': {
       backgroundColor: '$green300',
+    },
+  },
+
+  variants: {
+    skeleton: {
+      true: {
+        'h1, span, p': {
+          display: 'block',
+          height: '1.6em',
+          background: '$gray800',
+        },
+        p: {
+          height: '4.8rem',
+        },
+        button: {
+          background: '$gray800',
+          pointerEvents: 'none',
+          color: 'transparent',
+        },
+      },
     },
   },
 })

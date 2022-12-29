@@ -45,7 +45,17 @@ export default function Product({ product }: ProductProps) {
 
   const { isFallback } = useRouter()
   if (isFallback) {
-    return <h1>Carregando...</h1>
+    return (
+      <ProductContainer>
+        <ImageContainer skeleton={true}></ImageContainer>
+        <ProductDetails skeleton={true}>
+          <h1></h1>
+          <span></span>
+          <p></p>
+          <button></button>
+        </ProductDetails>
+      </ProductContainer>
+    )
   }
 
   return (
