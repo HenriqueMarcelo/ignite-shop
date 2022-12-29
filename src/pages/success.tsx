@@ -12,13 +12,18 @@ import {
 
 interface SuccessProps {
   customerName: string
-  product: {
+  products: {
     name: string
     imageUrl: string
-  }
+  }[]
+  quantity: number
 }
 
-export default function Success({ customerName, product }: SuccessProps) {
+export default function Success({
+  customerName,
+  products,
+  quantity,
+}: SuccessProps) {
   return (
     <>
       <Head>
@@ -27,19 +32,29 @@ export default function Success({ customerName, product }: SuccessProps) {
       </Head>
       <SuccessContainer>
         <ImagesContainer>
-          <ImageContainer>
-            <Image src={product.imageUrl} height={130} width={130} alt="" />
-          </ImageContainer>
+          {products.map((product) => (
+            <ImageContainer key={product.name}>
+              <Image src={product.imageUrl} height={130} width={130} alt="" />
+            </ImageContainer>
+          ))}
         </ImagesContainer>
 
         <h1>Compra efetuada!</h1>
 
-        <p>
-          Uhuul
-          <strong> {customerName}</strong>, sua
-          <strong> {product.name} </strong>
-          já está a caminho da sua casa.
-        </p>
+        {quantity === 1 ? (
+          <p>
+            Uhuul
+            <strong> {customerName}</strong>, sua
+            <strong> {products[0].name} </strong>
+            já está a caminho da sua casa.
+          </p>
+        ) : (
+          <p>
+            Uhuul
+            <strong> {customerName}</strong>, sua compra de {quantity} camisetas
+            já está a caminho da sua casa.
+          </p>
+        )}
 
         <Link href="/">Voltar ao catálogo</Link>
       </SuccessContainer>
@@ -64,15 +79,26 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   })
 
   const customerName = session.customer_details?.name
-  const product = session!.line_items!.data[0]!.price!.product as Stripe.Product
+
+  const products = session!.line_items!.data.map((lineItem) => {
+    const product = lineItem.price!.product as Stripe.Product
+    return {
+      name: product.name,
+      imageUrl: product.images[0],
+    }
+  })
+
+  const quantity = session!.line_items!.data.reduce((sum, lineItem) => {
+    return sum + Number(lineItem.quantity)
+  }, 0)
+
+  console.log(session!.line_items)
 
   return {
     props: {
       customerName,
-      product: {
-        name: product.name,
-        imageUrl: product.images[0],
-      },
+      products,
+      quantity,
     },
   }
 }
