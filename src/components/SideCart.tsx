@@ -1,6 +1,9 @@
+import axios from 'axios'
 import Image from 'next/image'
 import { X } from 'phosphor-react'
+import { useState } from 'react'
 import { useShoppingCart } from 'use-shopping-cart'
+import { CartEntry } from 'use-shopping-cart/core'
 import {
   CloseButton,
   ImageContainer,
@@ -18,9 +21,29 @@ export function SideCart() {
     removeItem,
   } = useShoppingCart()
 
-  const cartItems = []
+  const cartItems = [] as CartEntry[]
   for (const key in cartDetails) {
     cartItems.push(cartDetails[key])
+  }
+
+  const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] =
+    useState(false)
+
+  async function handleBuyProducts() {
+    try {
+      setIsCreatingCheckoutSession(true)
+      const response = await axios.post('/api/checkout', {
+        cart: cartItems,
+      })
+
+      const { checkoutUrl } = response.data
+
+      window.location.href = checkoutUrl
+    } catch (err) {
+      // Conectar com uma ferramenta de observabilidade (Datadog / Sentry)
+      setIsCreatingCheckoutSession(false)
+      alert('Falha ao redirecionar ao checkout!')
+    }
   }
 
   return (
@@ -58,7 +81,12 @@ export function SideCart() {
           <span>Valor Total</span>
           <strong>{formattedTotalPrice}</strong>
         </h2>
-        <button>Finalizar compra</button>
+        <button
+          onClick={handleBuyProducts}
+          disabled={isCreatingCheckoutSession}
+        >
+          Finalizar compra
+        </button>
       </footer>
     </SideCartContainer>
   )

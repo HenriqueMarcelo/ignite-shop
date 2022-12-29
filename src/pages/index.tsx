@@ -19,6 +19,7 @@ interface ProductType {
   imageUrl: string
   price: string
   originalPrice: number
+  defaultPriceId: string
 }
 
 interface HomeProps {
@@ -52,6 +53,7 @@ export default function Home({ products }: HomeProps) {
       price: product.originalPrice,
       currency: 'BRL',
       image: product.imageUrl,
+      defaultPriceId: product.defaultPriceId,
     }
 
     addItem(productToCart)
@@ -115,6 +117,7 @@ export const getStaticProps: GetStaticProps = async () => {
         currency: 'BRL',
       }).format(price.unit_amount! / 100),
       originalPrice: price.unit_amount,
+      defaultPriceId: price.id,
     }
   })
 
