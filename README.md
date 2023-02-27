@@ -1,34 +1,42 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+[Português 🇧🇷](README.pt.md)
 
-## Getting Started
+# Ignite Shop
 
-First, run the development server:
+The Ignite Shop is a simple and functional e-shop connected with Stripe's API. It can be accessed at https://ignite-shop-gilt.vercel.app/.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+This project was developed during Rocketseat's Ignite course. The goal of the project was to learn and apply knowledge in technologies like Next.js, integration with Stripe's API, Static Site Generator (SSG), using Next for backend requests, shopping cart manipulation, image optimizations with Next, creating styled components with Stitches, TypeScript and much more!
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Ignite Shop is a simple e-shop connected with Stripe's API. The main features of the project are:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- Listing of products on the home page, which are registered through Stripe's system.
+- Display detailed information about a product by clicking on it
+- Adding products to the shopping cart by clicking on the corresponding button.
+- Displaying a side menu with the products added to the cart and the total amount of the purchase.
+- Checkout through integration with Stripe's API.
+- Display of a screen showing the status of the order after payment.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Technologies used
 
-## Learn More
+The project was built using the following technologies:
 
-To learn more about Next.js, take a look at the following resources:
+- Next.js
+- Stripe
+- use-shopping-cart
+- Keen-Slider
+- Stitches
+- Axios
+- ESLint
+- Phosphor React
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## How to use
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+To use the project, you need to have Node.js installed on your machine. Follow the steps below:
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Clone this repository using the `git clone https://github.com/HenriqueMarcelo/ignite-shop.git` command.
+2. Access the project folder with the `cd ignite-shop` command.
+3. Install the project dependencies with the `npm install` command.
+4. Create an `.env.local` file by copying the `.env.example` file and insert your Stripe integration keys and project url.
+5. Start the development server with the `npm run dev` command.
+6. Go to http://localhost:3000 in your browser to use the application.
